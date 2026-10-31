@@ -6,3 +6,4 @@ vector_store/
 logs/*.csv
 .streamlit/secrets.toml
 .DS_Store
+.agents/
