@@ -37,7 +37,7 @@ COLLECTIONS = {
 }
 
 TOP_K = 3           # passages returned per search
-MIN_SCORE = 0.40    # similarity below this counts as "no matching document"
+MIN_SCORE = 0.35    # similarity below this counts as "no matching document"
 LOW_CONFIDENCE = 0.6
 
 if not OPENAI_API_KEY:
