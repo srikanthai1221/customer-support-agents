@@ -14,9 +14,12 @@ COLUMNS = [
 
 
 def load_log() -> pd.DataFrame:
-    if not LOG_FILE.exists():
+    if not LOG_FILE.exists() or LOG_FILE.stat().st_size == 0:
         return pd.DataFrame(columns=COLUMNS)
-    return pd.read_csv(LOG_FILE, dtype=str).fillna("")
+    try:
+        return pd.read_csv(LOG_FILE, dtype=str).fillna("")
+    except pd.errors.EmptyDataError:
+        return pd.DataFrame(columns=COLUMNS)
 
 
 def next_ticket_id() -> str:
@@ -29,7 +32,7 @@ def next_ticket_id() -> str:
 
 def append_ticket(row: dict) -> None:
     LOG_DIR.mkdir(exist_ok=True)
-    is_new = not LOG_FILE.exists()
+    is_new = not LOG_FILE.exists() or LOG_FILE.stat().st_size == 0
     with open(LOG_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=COLUMNS)
         if is_new:
