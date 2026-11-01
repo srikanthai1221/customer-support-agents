@@ -8,6 +8,23 @@ from core.escalation import decide_escalation
 from core.ticket_log import append_ticket
 from rag.vector_store import format_hits, search
 
+CATEGORIES = ["Shipping", "Refund & Returns", "Account & Login", "Product",
+              "Billing & Payments", "Other"]
+LANGUAGE_CODES = {"en": "English", "ta": "Tamil", "hi": "Hindi"}
+
+
+def normalise_category(value: str) -> str:
+    cleaned = value.strip().lower().replace(" and ", " & ")
+    for category in CATEGORIES:
+        if cleaned == category.lower():
+            return category
+    return value.strip()
+
+
+def normalise_language(value: str) -> str:
+    cleaned = value.strip()
+    return LANGUAGE_CODES.get(cleaned.lower(), cleaned.title())
+
 SYSTEM_MESSAGE = """You are the Log Agent of NimbusCart's support desk.
 You record the ticket and decide whether a human must take over. You never talk to the customer.
 
@@ -29,7 +46,6 @@ def check_escalation_policy(situation: str) -> str:
     """Look up NimbusCart's escalation policy for a described situation."""
     return format_hits(search("escalation", situation, min_score=0.0))
 
-
 def create_log_agent(model_client, ticket: dict) -> AssistantAgent:
     def log_ticket(
         category: str,
@@ -45,6 +61,10 @@ def create_log_agent(model_client, ticket: dict) -> AssistantAgent:
         escalation_reason: str,
     ) -> str:
         """Append this ticket to the ticket log and return the final status. Call exactly once."""
+        category = normalise_category(category)
+        language = normalise_language(language)
+        urgency = urgency.strip().title()
+        sentiment = sentiment.strip().title()
         claimed = set(re.findall(r"[\w\-]+\.md", kb_sources))
         verified = sorted(claimed & ticket["retrieved_sources"])
 
