@@ -63,14 +63,14 @@ Run tests: `python -m pytest -q` · Terminal run: `python cli.py "My order is la
 ## Test results (Section 8)
 | # | Complaint | Expected | Got | Screenshot |
 |---|---|---|---|---|
-| 1 | Where is my order? It was supposed to arrive yesterday. | Shipping · Resolved | <fill in> | [view](screenshots/01_case1_late_order.png) |
-| 2 | I want to return the shoes I bought last week. How do I get a refund? | Refund · Resolved | <fill in> | [view](screenshots/02_case2_return_shoes.png) |
-| 3 | I forgot my password and can't log in. | Account · Resolved | <fill in> | [view](screenshots/03_case3_password.png) |
-| 4 | The blender I received is broken. Can I get a replacement? | Product · Resolved | <fill in> | [view](screenshots/04_case4_blender.png) |
-| 5 | You charged my card three times! Fix this now or I'm contacting my bank and a lawyer. | Billing · High · Angry · Escalated | <fill in> | [view](screenshots/05_case5_triple_charge.png) |
-| 6 | Do you sell gift cards for a company of 500 employees with custom branding? | No document · Escalated | <fill in> | [view](screenshots/06_case6_gift_cards.png) |
-| 7 (own) | Tamil: "I forgot my password and can't log in. What should I do?" | Account · Resolved · reply in Tamil | <fill in> | [view](screenshots/07_own_tamil_password.png) |
-| 8 (own) | Someone placed two orders from my account that I did not place. I think my account was hacked. | Account · High · fraud · Escalated | <fill in> | [view](screenshots/08_own_hacked_account.png) |
+| 1 | Where is my order? It was supposed to arrive yesterday. | Shipping · Resolved | Shipping · Medium · Frustrated · **Resolved** (source: shipping_policy.md) | [view](screenshots/01_case1_late_order.png) |
+| 2 | I want to return the shoes I bought last week. How do I get a refund? | Refund · Resolved | Refund & Returns · Low · Neutral · **Resolved** (source: refund_policy.md) | [view](screenshots/02_case2_return_shoes.png) |
+| 3 | I forgot my password and can't log in. | Account · Resolved | Account & Login · Medium · Frustrated · **Resolved** (source: account_and_login.md) | [view](screenshots/03_case3_password.png) |
+| 4 | The blender I received is broken. Can I get a replacement? | Product · Resolved | Product · Medium · Neutral · **Resolved** (source: product_faq.md) | [view](screenshots/04_case4_blender.png) |
+| 5 | You charged my card three times! Fix this now or I'm contacting my bank and a lawyer. | Billing · High · Angry · Escalated | Billing & Payments · High · Angry · **Escalated**: High urgency + Angry customer + Risk: legal threat, payment dispute | [view](screenshots/05_case5_triple_charge.png) |
+| 6 | Do you sell gift cards for a company of 500 employees with custom branding? | No document · Escalated | Other · Low · Neutral · **Escalated**: No matching KB document + Low confidence (0.30), honest "can't confirm" reply | [view](screenshots/06_case6_gift_cards.png) |
+| 7 (own) | Forgot password, asked in Tamil | Account · Resolved · reply in Tamil | Account & Login · Medium · Neutral · **Resolved**, reply in Tamil (source: account_and_login.md) | [view](screenshots/07_own_tamil_password.png) |
+| 8 (own) | Someone placed two orders from my account that I did not place. I think my account was hacked. | Account · High · fraud · Escalated | Account & Login · High · Frustrated · **Escalated**: High urgency + Risk: fraud | [view](screenshots/08_own_hacked_account.png) |
 
 ### Ticket log
 ![Ticket log]
