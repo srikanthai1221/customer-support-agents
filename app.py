@@ -19,9 +19,14 @@ from team import build_task, build_team, new_ticket
 st.set_page_config(page_title="NimbusCart AI Support Desk", page_icon="🎧", layout="wide")
 
 # Optional password gate: protects your OpenAI key once the app is public
-if APP_PASSWORD and st.session_state.get("pwd") != APP_PASSWORD:
+if APP_PASSWORD and not st.session_state.get("authenticated"):
     st.title("NimbusCart AI Support Desk")
-    st.text_input("Enter the app password", type="password", key="pwd")
+    password = st.text_input("Enter the app password", type="password")
+    if password == APP_PASSWORD:
+        st.session_state.authenticated = True
+        st.rerun()
+    elif password:
+        st.error("Wrong password, please try again.")
     st.stop()
 
 AGENT_STEPS = {
