@@ -4,8 +4,7 @@ A multi-agent customer support desk built with **AutoGen (v0.7 AgentChat API)**,
 **FAISS** and **Streamlit**. Four agents read a complaint, find the answer in company documents,
 write a grounded reply and escalate hard cases to a human, logging every ticket.
 
-**Live demo:** <y[Streamlit cloud link ](http://localhost:8501)>
-Recording link also provided as attachment in the submission portal
+**Live demo:** [NimbusCart AI Support Desk on Streamlit Cloud](https://customer-support-agents-ql7j9a29ippifqheiojotd.streamlit.app) (password shared with the trainer). A screen recording is attached in the submission portal.
 
 ![Resolved ticket](screenshots/01_case1_late_order.png)
 
